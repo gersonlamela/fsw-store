@@ -27,7 +27,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "prettier.config.js"
+    "env.d.ts"
   ],
   "exclude": ["node_modules"]
 }

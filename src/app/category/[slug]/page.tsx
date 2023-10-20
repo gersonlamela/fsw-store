@@ -1,5 +1,6 @@
+import { ProductItem } from "@/components/ui/ProductItem";
 import { Badge } from "@/components/ui/badge";
-import { ProductItem } from "@/components/ui/product-item";
+
 import { CATEGORY_ICON } from "@/constants/category-icon";
 import { computeProductTotalPrice } from "@/helpers/product";
 import { prismaClient } from "@/lib/prisma";

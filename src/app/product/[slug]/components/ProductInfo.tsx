@@ -1,4 +1,6 @@
 "use client";
+
+import { ProductList } from "@/components/ui/ProductList";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ProductWithTotalPrice } from "@/helpers/product";

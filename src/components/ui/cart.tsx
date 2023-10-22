@@ -53,35 +53,37 @@ export function Cart() {
         </ScrollArea>
       </div>
 
-      <div className="flex  flex-col gap-3">
-        <Separator />
-        <div className="flex items-center justify-between text-xs">
-          <p>Subtotal</p>
-          <p>{subtotal.toFixed(2)}€</p>
-        </div>
-        <Separator />
-        <div className="flex items-center justify-between text-xs">
-          <p>Entrega</p>
-          <p>GRÁTIS</p>
-        </div>
-        <Separator />
-        <div className="flex items-center justify-between text-xs">
-          <p>Descontos</p>
-          <p>{totalDiscount.toFixed(2)}€</p>
-        </div>
-        <Separator />
-        <div className="flex items-center justify-between text-sm font-bold">
-          <p>Total</p>
-          <p>{total.toFixed(2)}€</p>
-        </div>
+      {products.length > 0 && (
+        <div className="flex  flex-col gap-3">
+          <Separator />
+          <div className="flex items-center justify-between text-xs">
+            <p>Subtotal</p>
+            <p>{subtotal.toFixed(2)}€</p>
+          </div>
+          <Separator />
+          <div className="flex items-center justify-between text-xs">
+            <p>Entrega</p>
+            <p>GRÁTIS</p>
+          </div>
+          <Separator />
+          <div className="flex items-center justify-between text-xs">
+            <p>Descontos</p>
+            <p>{totalDiscount.toFixed(2)}€</p>
+          </div>
+          <Separator />
+          <div className="flex items-center justify-between text-sm font-bold">
+            <p>Total</p>
+            <p>{total.toFixed(2)}€</p>
+          </div>
 
-        <Button
-          className="mt-7 font-bold uppercase"
-          onClick={handleFinishPurchaseClicl}
-        >
-          Finalizar compra
-        </Button>
-      </div>
+          <Button
+            className="mt-7 font-bold uppercase"
+            onClick={handleFinishPurchaseClicl}
+          >
+            Finalizar compra
+          </Button>
+        </div>
+      )}
     </div>
   );
 }

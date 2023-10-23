@@ -11,6 +11,8 @@ import {
   ArrowDown,
   ArrowLeftIcon,
   ArrowRightIcon,
+  MinusIcon,
+  PlusIcon,
   TruckIcon,
 } from "lucide-react";
 import { useContext, useState } from "react";
@@ -58,7 +60,7 @@ export function ProductInfo({ product }: ProductInfoProps) {
           variant="outline"
           onClick={handleDecreaseQuantityClick}
         >
-          <ArrowLeftIcon size={16} />
+          <MinusIcon size={16} />
         </Button>
 
         <span>{quantity}</span>
@@ -68,7 +70,7 @@ export function ProductInfo({ product }: ProductInfoProps) {
           variant="outline"
           onClick={handleIncreaseQuantityClick}
         >
-          <ArrowRightIcon size={16} />
+          <PlusIcon size={16} />
         </Button>
       </div>
 

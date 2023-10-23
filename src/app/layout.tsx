@@ -4,7 +4,7 @@ import "./globals.css";
 import { Header } from "@/components/ui/header";
 import { AuthProvider } from "@/providers/auth";
 import { Footer } from "@/components/ui/footer";
-import { CartProvider } from "@/providers/cart";
+import CartProvider from "@/providers/cart";
 
 const inter = Inter({ subsets: ["latin"] });
 

@@ -8,6 +8,7 @@ import {
   MenuIcon,
   PercentIcon,
   ShoppingCartIcon,
+  User,
 } from "lucide-react";
 import { Button } from "./button";
 import { Card } from "./card";
@@ -28,6 +29,14 @@ import { Separator } from "./separator";
 import Link from "next/link";
 import { Cart } from "./cart";
 import { Badge } from "./badge";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "./dropdown-menu";
 
 export function Header() {
   const { data, status } = useSession();
@@ -149,26 +158,45 @@ export function Header() {
 
       <div className="  flex flex-row items-center justify-center gap-8">
         {status === "authenticated" && data?.user && (
-          <div className="hidden flex-col md:flex">
-            <div className="flex items-center gap-2 ">
-              <Avatar className="h-[36px] w-[36px]">
-                <AvatarFallback>
-                  {data.user.name?.[0].toUpperCase()}
-                </AvatarFallback>
-                {data.user.image && <AvatarImage src={data.user.image} />}
-              </Avatar>
-            </div>
-          </div>
+          <DropdownMenu>
+            <DropdownMenuTrigger>
+              <div className="hidden flex-col md:flex">
+                <div className="flex items-center gap-2 ">
+                  <Avatar className="h-[36px] w-[36px]">
+                    <AvatarFallback>
+                      {data.user.name?.[0].toUpperCase()}
+                    </AvatarFallback>
+                    {data.user.image && <AvatarImage src={data.user.image} />}
+                  </Avatar>
+                </div>
+              </div>
+              <DropdownMenuContent>
+                <DropdownMenuLabel>{data?.user?.name}</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>Profile</DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Button
+                    onClick={handleLogOutClick}
+                    variant="outline"
+                    className="w-full justify-start gap-2"
+                  >
+                    <LogOutIcon size={16} />
+                    Logout
+                  </Button>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenuTrigger>
+          </DropdownMenu>
         )}
 
         {status === "unauthenticated" && (
           <Button
             onClick={handleLoginClick}
-            variant="outline"
-            className="hidden md:flex"
+            size="icon"
+            variant={"outline"}
+            className="h-[36px] w-[36px]"
           >
-            <LogInIcon size={16} />
-            Fazer Login
+            <User />
           </Button>
         )}
 

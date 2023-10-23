@@ -1,8 +1,8 @@
 "use client";
 
 import { ProductWithTotalPrice } from "@/helpers/product";
+import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { ReactNode, createContext, useEffect, useMemo, useState } from "react";
-import { useLocalStorage } from "../../hooks/useLocalStorage";
 
 export interface CartProduct extends ProductWithTotalPrice {
   quantity: number;

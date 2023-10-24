@@ -14,7 +14,7 @@ export function OrderProductItem({ orderProduct }: OrderPorductItemsProps) {
   const productWithTotalPrice = computeProductTotalPrice(orderProduct.product);
   return (
     <div className="flex items-center  gap-4">
-      <div className="flex h-[77px] w-[77px] items-center justify-center rounded-lg bg-accent">
+      <div className="flex h-[77px] w-[100px] items-center justify-center rounded-lg bg-accent">
         <Image
           src={orderProduct.product.imageUrls[0]}
           width={0}

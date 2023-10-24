@@ -1,36 +1,40 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Projeto E-commerce Full Stack Week 2.0 💻
+ 
+E-commerce desenvolvido durante a Full Stack Week
 
-## Getting Started
+<p align="center"><img src="https://github.com/gersonlamela/fsw-store/assets/73965255/a259854d-d3f5-4e2d-81fc-67a1c6bd7fec"  height="500"></p>
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Tecnologias Utilizadas 🚀
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **React**: Uma biblioteca JavaScript popular para construir interfaces de usuário interativas.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Next.js 13**: Um framework React que oferece renderização do lado do servidor (SSR), geração estática (SSG), entre muitos outros recursos.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- **Next Auth**: Biblioteca para autenticação de usuários com OAuth.
 
-## Learn More
+- **Postgres**: Um sistema de gerenciamento de banco de dados relacional.
 
-To learn more about Next.js, take a look at the following resources:
+- **Prisma**: Um ORM (Object-Relational Mapping) para Node.js e TypeScript.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **shadcn/ui**: Uma biblioteca de componentes de IU reutilizáveis e estilizáveis.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- **Tailwind CSS**: Um framework CSS que oferece várias classes para utilização já pré-estilizadas.
 
-## Deploy on Vercel
+- **API do Stripe**: Uma API de pagamento popular para processar pagamentos online de forma segura.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Funcionalidades 📦
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- **Login com o Google**: Permitimos que os usuários façam login usando suas contas do Google para uma experiência de autenticação simplificada.
+
+- **Navegação por Categorias**: Os usuários podem explorar produtos por categorias, facilitando a busca e a compra.
+
+- **Descontos em Produtos**: Alguns produtos podem ter descontos especiais, permitindo aos usuários economizar em suas compras.
+
+- **Gerenciamento do Carrinho de Compras**: Os usuários podem adicionar produtos ao seu carrinho de compras, remover produtos e também modificar a quantidade de um produto no carrinho de compras conforme necessário.
+
+- **Pagamento do Pedido com a API do Stripe**: Oferecemos uma experiência segura de pagamento online com a integração da API do Stripe, incluindo o uso de webhooks para processar eventos relacionados ao pagamento. Os usuários podem concluir seus pedidos com facilidade e segurança.
+
+## Protótipo no Figma 🎨
+
+https://www.figma.com/file/QnC8l03Et2nDZvYdNAg1IQ/FSW-Store?type=design&t=QGmMSwab9EBQVhDG-6

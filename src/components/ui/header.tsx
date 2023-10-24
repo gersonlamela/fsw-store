@@ -38,9 +38,15 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "./dropdown-menu";
+import { useContext } from "react";
+import { CartContext } from "@/providers/cart";
 
 export function Header() {
   const { data, status } = useSession();
+  const { products } = useContext(CartContext);
+
+  console.log(products.length);
+
   const handleLoginClick = async () => {
     await signIn();
   };
@@ -224,11 +230,17 @@ export function Header() {
             <Button
               size="icon"
               variant={"outline"}
-              className="h-[36px] w-[36px]"
+              className="relative h-[36px] w-[36px]"
             >
               <ShoppingCartIcon />
+              {products.length > 0 && (
+                <span className="absolute left-6 top-[-10px] flex h-5 w-5 items-center justify-center rounded-full bg-primary text-xs">
+                  {products.length}
+                </span>
+              )}
             </Button>
           </SheetTrigger>
+
           <SheetContent className="w-[350px]">
             <Cart />
           </SheetContent>

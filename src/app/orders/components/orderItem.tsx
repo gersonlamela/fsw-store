@@ -13,6 +13,7 @@ import { Separator } from "@/components/ui/separator";
 import { useMemo } from "react";
 import { computeProductTotalPrice } from "@/helpers/product";
 import { getOrderStatus } from "@/hooks/orderStatus";
+import pt from "date-fns/locale/pt";
 
 interface OrderItemProps {
   order: Prisma.OrderGetPayload<{

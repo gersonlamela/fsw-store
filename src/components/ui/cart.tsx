@@ -1,7 +1,7 @@
 "use client";
 import { ShoppingCartIcon } from "lucide-react";
 import { Badge } from "./badge";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CartContext } from "@/providers/cart";
 
 import { computeProductTotalPrice } from "@/helpers/product";
@@ -14,14 +14,17 @@ import { loadStripe } from "@stripe/stripe-js";
 import { createOrder } from "@/actions/order";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { ButtonLoading } from "./buttonLoading";
 
 export function Cart() {
   const { data } = useSession();
   const { products, subtotal, total, totalDiscount } = useContext(CartContext);
+  const [loading, setLoading] = useState(false);
 
   const router = useRouter();
 
-  const handleFinishPurchaseClicl = async () => {
+  const handleFinishPurchaseClick = async () => {
+    setLoading(true);
     if (!data?.user) {
       router.push(
         "./api/auth/signin?callbackUrl=http%3A%2F%2Flocalhost%3A3000%2F",
@@ -89,12 +92,16 @@ export function Cart() {
             <p>{total.toFixed(2)}€</p>
           </div>
 
-          <Button
-            className="mt-7 font-bold uppercase"
-            onClick={handleFinishPurchaseClicl}
-          >
-            Finalizar compra
-          </Button>
+          {loading ? (
+            <ButtonLoading loadingtext=" Finalizando compra" />
+          ) : (
+            <Button
+              className="mt-7 font-bold uppercase"
+              onClick={handleFinishPurchaseClick}
+            >
+              Finalizar compra
+            </Button>
+          )}
         </div>
       )}
     </div>

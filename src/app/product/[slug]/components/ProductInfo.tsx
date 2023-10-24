@@ -1,20 +1,14 @@
 "use client";
 
 import { DiscountBadge } from "@/components/ui/DiscountBadge";
-import { ProductList } from "@/components/ui/ProductList";
-import { Badge } from "@/components/ui/badge";
+
 import { Button } from "@/components/ui/button";
+import { ToastAction } from "@/components/ui/toast";
+import { useToast } from "@/components/ui/use-toast";
 import { ProductWithTotalPrice } from "@/helpers/product";
 import { CartContext } from "@/providers/cart";
-import { Product } from "@prisma/client";
-import {
-  ArrowDown,
-  ArrowLeftIcon,
-  ArrowRightIcon,
-  MinusIcon,
-  PlusIcon,
-  TruckIcon,
-} from "lucide-react";
+
+import { MinusIcon, PlusIcon, TruckIcon } from "lucide-react";
 import { useContext, useState } from "react";
 
 interface ProductInfoProps {
@@ -33,7 +27,15 @@ export function ProductInfo({ product }: ProductInfoProps) {
     setQuantity((prev) => prev + 1);
   };
 
+  const { toast } = useToast();
+
   const handleAddToCartClick = () => {
+    toast({
+      title: "Produto adicionado!",
+      description: "Produto adicionado no carrinho",
+      action: <ToastAction altText="Fechar">Fechar</ToastAction>,
+    });
+
     addProductToCart({ ...product, quantity });
   };
 

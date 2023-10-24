@@ -13,14 +13,19 @@ import { createCheckout } from "@/actions/checkout";
 import { loadStripe } from "@stripe/stripe-js";
 import { createOrder } from "@/actions/order";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export function Cart() {
   const { data } = useSession();
   const { products, subtotal, total, totalDiscount } = useContext(CartContext);
 
+  const router = useRouter();
+
   const handleFinishPurchaseClicl = async () => {
     if (!data?.user) {
-      return;
+      router.push(
+        "./api/auth/signin?callbackUrl=http%3A%2F%2Flocalhost%3A3000%2F",
+      );
     }
     const order = await createOrder(products, (data?.user as any).id);
     const checkout = await createCheckout(products, order.id);

@@ -20,16 +20,13 @@ export function ProductItem({ product }: ProductItemProps) {
         {imageLoad ? (
           <Skeleton className="h-[170px] w-full " />
         ) : (
-          <div className="relative flex h-[170px] w-full  items-center justify-center rounded-lg bg-accent">
+          <div className="relative flex  aspect-square h-[170px] w-full  items-center justify-center rounded-lg bg-accent">
             <Image
               src={product.imageUrls[0]}
               width={0}
               height={0}
               sizes="100vw"
-              className="h-auto max-h-[50%] w-auto max-w-[80%]"
-              style={{
-                objectFit: "contain",
-              }}
+              className="h-auto max-h-[70%] w-auto max-w-[80%] object-contain"
               alt={product.name}
               onLoad={() => setImageLoad(true)}
               onLoadingComplete={() => setImageLoad(false)}

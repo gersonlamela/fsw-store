@@ -45,7 +45,7 @@ export function ProductImages({ name, imageUrls }: ProductImageProps) {
               width={0}
               height={0}
               alt={name}
-              className="h-auto max-h-[70%] w-auto max-w-[80%]"
+              className="h-auto max-h-[70%] w-auto max-w-[80%] object-contain"
               sizes="100vw"
             />
           </button>

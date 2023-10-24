@@ -2,6 +2,9 @@
  
 E-commerce desenvolvido durante a Full Stack Week
 
+<p align="center"><img src="https://github.com/gersonlamela/fsw-store/assets/73965255/a259854d-d3f5-4e2d-81fc-67a1c6bd7fec"  height="500"></p>
+
+
 ## Tecnologias Utilizadas 🚀
 
 - **React**: Uma biblioteca JavaScript popular para construir interfaces de usuário interativas.

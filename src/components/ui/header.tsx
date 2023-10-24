@@ -6,6 +6,7 @@ import {
   LogInIcon,
   LogOutIcon,
   MenuIcon,
+  PackageSearchIcon,
   PercentIcon,
   ShoppingCartIcon,
   User,
@@ -116,6 +117,18 @@ export function Header() {
               </SheetClose>
 
               <SheetClose asChild>
+                <Link href="/orders">
+                  <Button
+                    variant="outline"
+                    className="w-full justify-start gap-2"
+                  >
+                    <PackageSearchIcon size={16} />
+                    Meus Pedidos
+                  </Button>
+                </Link>
+              </SheetClose>
+
+              <SheetClose asChild>
                 <Link href={"/deals"}>
                   <Button
                     variant="outline"
@@ -174,6 +187,12 @@ export function Header() {
                 <DropdownMenuLabel>{data?.user?.name}</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>Profile</DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Link href="/orders" className="w-full justify-start gap-2">
+                    <PackageSearchIcon size={16} />
+                    Meus Pedidos
+                  </Link>
+                </DropdownMenuItem>
                 <DropdownMenuItem>
                   <Button
                     onClick={handleLogOutClick}

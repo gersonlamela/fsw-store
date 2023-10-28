@@ -29,7 +29,6 @@ import { Avatar } from "./avatar";
 import { Separator } from "./separator";
 import Link from "next/link";
 import { Cart } from "./cart";
-import { Badge } from "./badge";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -45,7 +44,7 @@ export function Header() {
   const { data, status } = useSession();
   const { products } = useContext(CartContext);
 
-  console.log(products.length);
+  const cartQuantityItems = products.length;
 
   const handleLoginClick = async () => {
     await signIn();
@@ -233,9 +232,9 @@ export function Header() {
               className="relative h-[36px] w-[36px]"
             >
               <ShoppingCartIcon />
-              {products.length > 0 && (
-                <span className="absolute left-6 top-[-10px] flex h-5 w-5 items-center justify-center rounded-full bg-primary text-xs">
-                  {products.length}
+              {cartQuantityItems > 0 && (
+                <span className="absolute right-[calc(-1.25rem/2)] top-[calc(-1.25rem/2)] flex h-6 w-6 items-center justify-center rounded-lg bg-primary text-sm font-bold">
+                  {cartQuantityItems}
                 </span>
               )}
             </Button>

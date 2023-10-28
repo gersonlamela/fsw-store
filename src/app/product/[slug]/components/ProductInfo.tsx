@@ -40,9 +40,8 @@ export function ProductInfo({ product }: ProductInfoProps) {
   };
 
   return (
-    <div className="flex flex-col px-5 ">
-      <h2 className="text-lg">{product.name}</h2>
-
+    <div className="mt-7 flex flex-col px-5 lg:mt-0 lg:max-w-[392px] lg:rounded-xl lg:bg-accent lg:p-10">
+      <h2 className="text-lg font-light">{product.name}</h2>
       <div className="item-center flex gap-2">
         <h1 className="text-xl font-bold">{product.totalPrice.toFixed(2)}€</h1>
         {product.discountPercentage > 0 && (
@@ -76,9 +75,9 @@ export function ProductInfo({ product }: ProductInfoProps) {
         </Button>
       </div>
 
-      <div className="mt-8 flex flex-col gap-3">
+      <div className="mt-8 flex flex-col gap-3 ">
         <h3 className="text-base font-bold">Descrição</h3>
-        <p className=" text-justify text-sm opacity-60">
+        <p className=" overflow-scroll text-justify text-sm opacity-60 lg:max-h-[140px]">
           {product.description}
         </p>
       </div>

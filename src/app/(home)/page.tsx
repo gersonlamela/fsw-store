@@ -32,13 +32,15 @@ export default async function Home() {
   return (
     <div className="flex flex-col gap-8 py-8">
       <PromoBanner src="/banner-home-01.png" alt="até 55% desconto esse mês " />
-      <div className=" px-5">
+      <div className="max-w-screen-size mx-auto px-5">
         <Categories />
       </div>
 
       <div>
-        <SectionTitle>Ofertas</SectionTitle>
-        <ProductList products={deals} />
+        <div className="max-w-screen-size mx-auto">
+          <SectionTitle>Ofertas</SectionTitle>
+          <ProductList products={deals} />
+        </div>
       </div>
 
       <PromoBanner
@@ -47,8 +49,10 @@ export default async function Home() {
       />
 
       <div>
-        <SectionTitle>Teclados</SectionTitle>
-        <ProductList products={keyboards} />
+        <div className="max-w-screen-size mx-auto">
+          <SectionTitle>Teclados</SectionTitle>
+          <ProductList products={keyboards} />
+        </div>
       </div>
 
       <PromoBanner
@@ -57,8 +61,10 @@ export default async function Home() {
       />
 
       <div>
-        <SectionTitle>Mouses</SectionTitle>
-        <ProductList products={mouses} />
+        <div className="max-w-screen-size mx-auto">
+          <SectionTitle>Mouses</SectionTitle>
+          <ProductList products={mouses} />
+        </div>
       </div>
     </div>
   );

@@ -8,7 +8,7 @@ interface ButtonLoadingProps {
 
 export function ButtonLoading({ loadingtext }: ButtonLoadingProps) {
   return (
-    <Button disabled className="font-bold uppercase">
+    <Button disabled className="mt-7 font-bold uppercase">
       <Loader2 className="mr-2 h-4 w-4 animate-spin" />
       {loadingtext}
     </Button>

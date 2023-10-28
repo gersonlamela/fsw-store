@@ -33,9 +33,11 @@ export default async function ProductDetailsPage({
 
   if (!product) return null;
   return (
-    <div className="flex flex-col gap-8 pb-5">
-      <ProductImages imageUrls={product.imageUrls} name={product.name} />
-      <ProductInfo product={computeProductTotalPrice(product)} />
+    <div className=" flex flex-col gap-8 pb-8 lg:px-[100px] lg:py-10">
+      <div className="w-full gap-8 lg:flex lg:justify-between">
+        <ProductImages imageUrls={product.imageUrls} name={product.name} />
+        <ProductInfo product={computeProductTotalPrice(product)} />
+      </div>
 
       <div>
         <SectionTitle>PRODUTOS RECOMENDADOS</SectionTitle>

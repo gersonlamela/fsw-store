@@ -15,8 +15,8 @@ export function ProductImages({ name, imageUrls }: ProductImageProps) {
     setCurrentImage(imageUrl);
   };
   return (
-    <div className="flex flex-col">
-      <div className="flex h-[380px] items-center justify-center bg-accent">
+    <div className="flex max-w-[736px] flex-col lg:flex-1 lg:flex-row-reverse lg:rounded-xl lg:bg-accent">
+      <div className="flex h-[380px] w-full items-center justify-center bg-accent lg:rounded-xl">
         <Image
           src={currentImage}
           width={0}
@@ -30,11 +30,11 @@ export function ProductImages({ name, imageUrls }: ProductImageProps) {
         />
       </div>
       {/*Botões com outras Imagens*/}
-      <div className="mt-8 grid grid-cols-4 gap-4 px-5">
+      <div className="mt-8 grid grid-cols-4 gap-4 px-5 lg:mt-0 lg:flex lg:flex-col lg:py-5">
         {imageUrls.map((imageUrl) => (
           <button
             key={imageUrl}
-            className={`flex h-[100px] items-center justify-center rounded-lg bg-accent ${
+            className={`flex h-[80px] w-[77px] items-center justify-center rounded-lg lg:bg-background ${
               imageUrl === currentImage &&
               "border-2 border-solid border-primary"
             }`}

@@ -8,7 +8,7 @@ interface CategoryItemProps {
   category: Category;
 }
 
-const CategoryItem = ({ category }: CategoryItemProps) => {
+export const CategoryItem = ({ category }: CategoryItemProps) => {
   return (
     <Link href={`/category/${category.slug}`}>
       <Badge
@@ -21,5 +21,3 @@ const CategoryItem = ({ category }: CategoryItemProps) => {
     </Link>
   );
 };
-
-export default CategoryItem;

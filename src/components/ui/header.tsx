@@ -1,5 +1,6 @@
 "use client";
 
+import React, { useContext, useEffect, useState } from "react";
 import {
   HomeIcon,
   ListOrderedIcon,
@@ -8,6 +9,7 @@ import {
   MenuIcon,
   PackageSearchIcon,
   PercentIcon,
+  Search,
   ShoppingCartIcon,
   User,
 } from "lucide-react";
@@ -37,10 +39,13 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "./dropdown-menu";
-import { useContext } from "react";
+
 import { CartContext } from "@/providers/cart";
+import SearchComponent from "./search";
 
 export function Header() {
+  const [isSearchOpen, setIsSearchOpen] = useState(false); // Estado para controlar a abertura/fechamento do componente de pesquisa
+  const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
   const { data, status } = useSession();
   const { products } = useContext(CartContext);
 
@@ -54,9 +59,17 @@ export function Header() {
     await signOut();
   };
 
+  useEffect(() => {
+    if (isSearchOpen) {
+      setIsSubMenuOpen(false); // Fecha a div com o id "submenu" quando a pesquisa estiver aberta
+    } else {
+      setIsSubMenuOpen(true);
+    }
+  }, [isSearchOpen]);
+
   return (
     <Card className="flex items-center justify-between p-[1.875rem] md:px-[6.25rem]">
-      <div className="md:hidden">
+      <div className={`${!isSearchOpen ? "flex md:hidden" : "hidden  "}`}>
         <Sheet>
           <SheetTrigger asChild>
             <Button size="icon" variant={"outline"}>
@@ -161,12 +174,18 @@ export function Header() {
         </Sheet>
       </div>
       <Link href="/">
-        <h1 className="text-lg font-semibold ">
+        <h1 className="flex flex-1  text-lg font-semibold ">
           <span className="text-primary">FSW</span> Store
         </h1>
       </Link>
 
-      <div className="hidden h-full flex-row items-center justify-center gap-8 md:flex">
+      <div
+        className={`${
+          !isSearchOpen
+            ? " hidden  h-full flex-1  flex-row items-center justify-center gap-8 transition-opacity duration-300 md:flex"
+            : "hidden "
+        }`}
+      >
         <Link href={"/"}>Início</Link>
         <Separator orientation="vertical" />
         <Link href={"/catalog"}>Catálogo</Link>
@@ -174,7 +193,16 @@ export function Header() {
         <Link href={"/deals"}>Ofertas</Link>
       </div>
 
-      <div className="  flex flex-row items-center justify-center gap-8">
+      <div
+        className={`flex flex-row items-center justify-end gap-2 sm:gap-4 md:gap-8 ${
+          !isSearchOpen ? "" : "ml-2 flex-1 md:ml-4"
+        }`}
+      >
+        <SearchComponent
+          isSearchOpen={isSearchOpen}
+          toggleSearch={() => setIsSearchOpen(!isSearchOpen)} // Passando a função para abrir/fechar o componente de pesquisa
+        />
+
         {status === "authenticated" && data?.user && (
           <DropdownMenu>
             <DropdownMenuTrigger>
@@ -224,26 +252,28 @@ export function Header() {
           </Button>
         )}
 
-        <Sheet>
-          <SheetTrigger asChild>
-            <Button
-              size="icon"
-              variant={"outline"}
-              className="relative h-[36px] w-[36px]"
-            >
-              <ShoppingCartIcon />
-              {cartQuantityItems > 0 && (
-                <span className="absolute right-[calc(-1.25rem/2)] top-[calc(-1.25rem/2)] flex h-6 w-6 items-center justify-center rounded-lg bg-primary text-sm font-bold">
-                  {cartQuantityItems}
-                </span>
-              )}
-            </Button>
-          </SheetTrigger>
+        <div className={`${!isSearchOpen ? "flex" : "hidden md:flex "}`}>
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button
+                size="icon"
+                variant={"outline"}
+                className="relative h-[36px] w-[36px]"
+              >
+                <ShoppingCartIcon />
+                {cartQuantityItems > 0 && (
+                  <span className="absolute right-[calc(-1.25rem/2)] top-[calc(-1.25rem/2)] flex h-6 w-6 items-center justify-center rounded-lg bg-primary text-sm font-bold">
+                    {cartQuantityItems}
+                  </span>
+                )}
+              </Button>
+            </SheetTrigger>
 
-          <SheetContent className="w-[350px]">
-            <Cart />
-          </SheetContent>
-        </Sheet>
+            <SheetContent className="w-[350px]">
+              <Cart />
+            </SheetContent>
+          </Sheet>
+        </div>
       </div>
     </Card>
   );

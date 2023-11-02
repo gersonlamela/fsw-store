@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 import { prismaClient } from "@/lib/prisma";
 import { PromoBanner } from "./components/PromoBanner";
 

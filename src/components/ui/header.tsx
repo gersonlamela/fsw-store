@@ -20,7 +20,6 @@ import {
   SheetClose,
   SheetContent,
   SheetHeader,
-  SheetTitle,
   SheetTrigger,
 } from "./sheet";
 
@@ -44,8 +43,7 @@ import { CartContext } from "@/providers/cart";
 import SearchComponent from "./search";
 
 export function Header() {
-  const [isSearchOpen, setIsSearchOpen] = useState(false); // Estado para controlar a abertura/fechamento do componente de pesquisa
-  const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const { data, status } = useSession();
   const { products } = useContext(CartContext);
 
@@ -60,19 +58,15 @@ export function Header() {
   };
 
   useEffect(() => {
-    if (isSearchOpen) {
-      setIsSubMenuOpen(false); // Fecha a div com o id "submenu" quando a pesquisa estiver aberta
-    } else {
-      setIsSubMenuOpen(true);
-    }
-  }, [isSearchOpen]);
+    setIsSearchOpen(false); // Fecha a pesquisa quando o componente é montado
+  }, []);
 
   return (
     <Card className="flex items-center justify-between p-[1.875rem] md:px-[6.25rem]">
-      <div className={`${!isSearchOpen ? "flex md:hidden" : "hidden  "}`}>
+      <div className={`flex ${isSearchOpen ? "hidden" : "md:hidden"}`}>
         <Sheet>
           <SheetTrigger asChild>
-            <Button size="icon" variant={"outline"}>
+            <Button size="icon" variant="outline">
               <MenuIcon />
             </Button>
           </SheetTrigger>
@@ -93,7 +87,7 @@ export function Header() {
 
                   <div className="flex flex-col">
                     <p className="font-medium">{data.user.name}</p>
-                    <p className="text-sm  opacity-75">Boas compras!</p>
+                    <p className="text-sm opacity-75">Boas compras!</p>
                   </div>
                 </div>
                 <Separator />
@@ -147,7 +141,7 @@ export function Header() {
               </SheetClose>
 
               <SheetClose asChild>
-                <Link href={"/deals"}>
+                <Link href="/deals">
                   <Button
                     variant="outline"
                     className="w-full justify-start gap-2"
@@ -174,16 +168,15 @@ export function Header() {
         </Sheet>
       </div>
       <Link href="/">
-        <h1 className="flex flex-1  text-lg font-semibold ">
+        <h1 className="flex flex-1  text-lg font-semibold">
           <span className="text-primary">FSW</span> Store
         </h1>
       </Link>
 
       <div
-        className={`${
-          !isSearchOpen
-            ? " hidden  h-full flex-1  flex-row items-center justify-center gap-8 transition-opacity duration-300 md:flex"
-            : "hidden "
+        id="list"
+        className={`relative hidden flex-row items-center justify-center gap-8 transition-opacity duration-300 lg:flex ${
+          isSearchOpen ? "hidden lg:flex-1" : ""
         }`}
       >
         <Link href={"/"}>Início</Link>
@@ -195,12 +188,12 @@ export function Header() {
 
       <div
         className={`flex flex-row items-center justify-end gap-2 sm:gap-4 md:gap-8 ${
-          !isSearchOpen ? "" : "ml-2 flex-1 md:ml-4"
+          isSearchOpen ? "ml-2 flex-1 md:ml-4 lg:flex-none" : ""
         }`}
       >
         <SearchComponent
           isSearchOpen={isSearchOpen}
-          toggleSearch={() => setIsSearchOpen(!isSearchOpen)} // Passando a função para abrir/fechar o componente de pesquisa
+          toggleSearch={() => setIsSearchOpen(!isSearchOpen)}
         />
 
         {status === "authenticated" && data?.user && (
@@ -252,7 +245,9 @@ export function Header() {
           </Button>
         )}
 
-        <div className={`${!isSearchOpen ? "flex" : "hidden md:flex "}`}>
+        <div
+          className={`${isSearchOpen ? "hidden md:flex" : "hidden md:flex "}`}
+        >
           <Sheet>
             <SheetTrigger asChild>
               <Button

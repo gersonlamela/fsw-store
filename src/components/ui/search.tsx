@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { Search } from "lucide-react";
+import { Search, X } from "lucide-react";
 import { Input } from "./input";
 import { Button } from "./button";
 
@@ -34,21 +34,34 @@ const SearchComponent = ({
   }, [isSearchOpen]);
 
   return (
-    <div className="relative flex w-full flex-1 justify-end ">
+    <div className="relative flex w-full justify-end   ">
       <div
-        className=" flex w-full flex-1   items-center justify-end"
+        className=" relative flex w-full flex-1   items-center justify-end"
         ref={inputRef}
       >
         <div
           className={`flex flex-row ${
-            isSearchOpen ? " flex w-full  " : "hidden "
+            isSearchOpen ? " flex w-full lg:w-[600px]  " : "hidden "
           }`}
         >
-          <Input type="search" placeholder="Search..." />
+          <Input
+            type="text"
+            placeholder="Search..."
+            className="ring-0 focus-visible:ring-0 focus-visible:ring-offset-0"
+          />
         </div>
-        <Button variant="outline" onClick={toggleSearch} className="p-2">
-          <Search />
-        </Button>
+        {isSearchOpen ? (
+          <>
+            <Search className="absolute right-14" />
+            <Button variant="outline" onClick={toggleSearch} className="p-2">
+              <X />
+            </Button>
+          </>
+        ) : (
+          <Button variant="outline" onClick={toggleSearch} className="p-2">
+            <Search />
+          </Button>
+        )}
       </div>
     </div>
   );
